@@ -298,3 +298,4 @@ void qs_ordena(AGENDA pAgenda[], int left, int right){
     if(left < j) qs_ordena(pAgenda, left, i);
     if(i < right) qs_ordena(pAgenda, i, right);
 }
+
