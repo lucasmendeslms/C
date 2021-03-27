@@ -230,3 +230,40 @@ void aloca(AGENDA **pAgenda, int *piEntradas){
     }
 }
 
+void pesquisar(AGENDA *pAgenda, int iEntradas){
+
+    char op;
+    int i = 0;
+    char nome[40];
+
+    printf("\nInforme o nome: ");
+    fflush(stdin);
+    gets(nome);
+
+    
+    for(i = 0; i < iEntradas && strncmp((pAgenda)[i].nome, nome, strlen(nome)) != 0; i++);
+
+    if(i >= iEntradas){
+        printf("\nRegistro nao encontrado");
+    }else{
+
+        do{
+
+            printf("\n\nRegistro [%d]", i+1);
+            printf("\nNome: %s", (pAgenda)[i].nome);
+            printf("\nE-mail: %s", (pAgenda)[i].email);
+            printf("\nTelefone: %d", (pAgenda)[i].telefone);
+            printf("\nProximo?");
+            op = getch();
+            i++;
+
+            if(i >= iEntradas){
+                i = 0;
+            }
+
+        } while(op == 'S' || op == 's');
+
+    }
+    
+}
+
