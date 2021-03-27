@@ -264,6 +264,37 @@ void pesquisar(AGENDA *pAgenda, int iEntradas){
         } while(op == 'S' || op == 's');
 
     }
-    
+
 }
 
+void ordena(AGENDA pAgenda[], int iEntradas){
+
+    qs_ordena(pAgenda, 0, iEntradas - 1);
+}
+
+void qs_ordena(AGENDA pAgenda[], int left, int right){
+
+    register int i, j;
+    char *x;
+    AGENDA t;
+
+    i = left;
+    j = right;
+    x = pAgenda[(left + right) / 2].nome;
+
+    do{
+        while(strcmp(pAgenda[i].nome, x) < 0 && i < right) i++;
+        while(strcmp(pAgenda[j].nome, x) > 0 && j > left) j--;
+
+        if(i <= j){
+            t = pAgenda[i];
+            pAgenda[i] = pAgenda[j];
+            pAgenda[j] = t;
+            i++;
+            j--;
+        }
+    }while(i <= j);
+
+    if(left < j) qs_ordena(pAgenda, left, i);
+    if(i < right) qs_ordena(pAgenda, i, right);
+}
